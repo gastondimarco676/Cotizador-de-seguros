@@ -22,8 +22,23 @@ const min = max -20
             yearOption.textContent = i
             selectYear.appendChild(yearOption)
          }
-     }   
+     }  
      
+     
+     UI.prototype.mostrarMensaje = (mensaje,tipo)=>{
+        const divMensajeError = document.createElement('div')
+        if (tipo==='error'){
+            divMensajeError.classList.add('error')
+        }else if (tipo==='correcto'){
+            divMensajeError.classList.add('correcto') 
+        }
+        divMensajeError.textContent = mensaje
+        formulario.appendChild(divMensajeError)
+
+        setTimeout(() => {
+            divMensajeError.remove();
+        }, 5000);
+     } 
  }
 
 
@@ -54,12 +69,13 @@ const tipo = document.querySelector('input[name="tipo"]:checked').value
 
 
 if(marca ===''){
-const mensajeError = document.createElement('p')
-mensajeError.classList.add('error')
-mensajeError.textContent= "no has seleccionado una marca"
-formulario.appendChild(mensajeError)
-}else{
-    console.log('pasastes la validacion')
+UI.prototype.mostrarMensaje('te olvidaste la marca', 'error')
+return
+}
+UI.prototype.mostrarMensaje('ok, cotizando', 'correcto') 
+const divMensajeError = document.querySelector('.error')
+if(marca && divMensajeError){
+    divMensajeError.remove()
 }
  }
    
