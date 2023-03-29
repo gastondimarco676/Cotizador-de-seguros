@@ -1,4 +1,7 @@
 
+//variables
+const formulario = document.querySelector('#cotizar-seguro')
+
 //Constructores
 function Seguro(year, marca, tipo){
     this.year = year,
@@ -26,11 +29,39 @@ const min = max -20
 
 //instanciar
 const ui = new UI()
-console.log(ui)
+//console.log(ui)
  document.addEventListener('DOMContentLoaded',()=>{
 ui.llenarOpciones()
  })
 
+EventListeners()
+
+function EventListeners(){
+    formulario.addEventListener('submit',cotizarSeguro)
+}
+
+function cotizarSeguro(e){
+//leer marca
+e.preventDefault();
+//console.log('cotizanding')
+const marca = document.querySelector('#marca').value
+
+//leer año
+const año = document.querySelector('#year').value
+
+//leer tipo
+const tipo = document.querySelector('input[name="tipo"]:checked').value
+
+
+if(marca ===''){
+const mensajeError = document.createElement('p')
+mensajeError.classList.add('error')
+mensajeError.textContent= "no has seleccionado una marca"
+formulario.appendChild(mensajeError)
+}else{
+    console.log('pasastes la validacion')
+}
+ }
    
 
 
